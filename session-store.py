@@ -4,7 +4,7 @@
 import os
 
 import redis
-from flask import Flask, session, redirect, request,escape # type: ignore
+from flask import Flask, session, redirect, request,escape 
 
 
 # Configure the application name with the FLASK_APP environment variable.
@@ -16,7 +16,7 @@ app.secret_key = os.environ.get('SECRET_KEY', default=None)
 
 
 # Connect to Redis with the REDIS_URL environment variable.
-store = redis.Redis.from_url(os.environ.get('REDIS_URL')) # type: ignore
+store = redis.Redis.from_url(os.environ.get('REDIS_URL')) 
 
 
 @app.route('/')
@@ -39,7 +39,7 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        session['username'] = request.form['username'] # type: ignore
+        session['username'] = request.form['username'] 
         return redirect('/')
     return '''
         <form method="post">
@@ -51,5 +51,5 @@ def login():
 
 @app.route('/logout')
 def logout():
-    session.pop('username', None) # type: ignore
+    session.pop('username', None) 
     return redirect('/')
